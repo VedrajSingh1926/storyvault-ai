@@ -1,11 +1,31 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function BackgroundLayer({ showVideo }) {
+export default function BackgroundLayer({ showVideo, isHome }) {
   return (
     <div className="fixed inset-0 z-0">
       <AnimatePresence mode="wait">
-        {showVideo ? (
+        {isHome ? (
+          <motion.div
+            key="home-video"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1 }}
+            className="absolute inset-0"
+          >
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover z-0"
+              src="/heritage-hero.mp4"
+            />
+            <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/70 via-[#0d0a06]/80 to-[#0d0d0c]" />
+            <div className="absolute inset-0 z-10 bg-gradient-to-r from-black/30 via-transparent to-black/30" />
+          </motion.div>
+        ) : showVideo ? (
           <motion.div
             key="video"
             initial={{ opacity: 0 }}

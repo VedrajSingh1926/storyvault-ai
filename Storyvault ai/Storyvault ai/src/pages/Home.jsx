@@ -8,22 +8,23 @@ import TimelineTab from "../components/heritage/TimelineTab";
 import ShareStoryTab from "../components/heritage/ShareStoryTab";
 import RecipeTab from "../components/heritage/RecipeTab";
 import TravelTab from "../components/heritage/TravelTab";
+import AIChatWidget from "../components/heritage/AIChatWidget";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("home");
   const [missionOpen, setMissionOpen] = useState(false);
   const [timelineStep, setTimelineStep] = useState(1);
 
-  const showVideo = activeTab === "timeline" && timelineStep <= 2;
   const isHome = activeTab === "home";
+  const showVideo = activeTab === "timeline" && timelineStep <= 2;
 
   return (
     <div className="relative min-h-screen">
-      <BackgroundLayer showVideo={showVideo} />
+      <BackgroundLayer showVideo={showVideo} isHome={isHome} />
 
       <div className="relative z-10 flex flex-col min-h-screen">
         <HeaderNav
-          activeTab={activeTab === "home" ? null : activeTab}
+          activeTab={isHome ? null : activeTab}
           setActiveTab={(tab) => {
             setActiveTab(tab);
             setTimelineStep(1);
@@ -31,7 +32,7 @@ export default function Home() {
           onMissionOpen={() => setMissionOpen(true)}
         />
 
-        <main className="flex-1 px-4 py-8 overflow-y-auto">
+        <main className={`flex-1 overflow-y-auto ${!isHome ? "px-4 py-8" : ""}`}>
           <AnimatePresence mode="wait">
             {isHome && (
               <motion.div
@@ -95,14 +96,19 @@ export default function Home() {
           </AnimatePresence>
         </main>
 
-        <footer className="relative z-10 text-center py-4 border-t border-[#E6C697]/10">
-          <p className="text-[9px] text-[#E6C697]/25 font-heading tracking-widest">
-            StoryVault AI · Culture Maps · Traditional Recipes · NRI Heritage Journeys · Community Stories
-          </p>
-        </footer>
+        {!isHome && (
+          <footer className="relative z-10 text-center py-4 border-t border-[#E6C697]/10">
+            <p className="text-[9px] text-[#E6C697]/25 font-heading tracking-widest">
+              StoryVault AI · Culture Maps · Traditional Recipes · NRI Heritage Journeys · Community Stories
+            </p>
+          </footer>
+        )}
       </div>
 
       <MissionModal isOpen={missionOpen} onClose={() => setMissionOpen(false)} />
+
+      {/* Sage AI floating chat widget — always present */}
+      <AIChatWidget />
     </div>
   );
 }

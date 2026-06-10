@@ -1,0 +1,20 @@
+You are an expert Frontend Designer and Full-Stack Developer. The core Gemini functionality is working perfectly. Now, we need to completely overhaul the Home Page / Landing Page of "StoryVault AI" to make it highly immersive, cinematic, and premium, plus prepare it for an AI Agent integration.
+
+Please apply the following updates across the project workspace:
+
+1. VIDEO BACKGROUND & CINEMATIC HERO SECTION:
+   - Modify the Home page component to support a full-bleed, looping video background behind the main text.
+   - Use absolute positioning (`absolute inset-0 w-full h-full object-cover z-0`) for the video element, with an overlay layer (`bg-black/50` or a deep amber/black gradient overlay) so the text remains high-contrast and fully legible.
+   - Restructure the typography of the text ("STORYVAULT AI", "Transmission of heritage...", etc.). Make the text styling elegant, sharp, and spaced out gracefully to give a high-end luxury museum feel while keeping the background video visible.
+
+2. LOGO INTEGRATION & NAVBAR UPDATE:
+   - In the Navbar/Header component, look for the 'StoryVault AI' logo placeholder. Update it to render the upcoming logo file.
+   - Add a dedicated "Home" link/icon to the main navigation menu so users can easily click back to this immersive landing page from any module.
+
+3. INTEGRATE AN AI AGENT CHAT OVERLAY:
+   - Create a new floating AI Assistant component (a floating chat widget at the bottom-right corner of the screen).
+   - Style it as an interactive cultural helper bubble that opens into a beautiful conversational panel on click.
+   - Wire this widget up to use the existing Gemini API context so users can type questions like "Help me discover a traditional recipe" or "Tell me about historical timelines" right from the overlay.
+
+4. POLISH AND RUN:
+   - Check all asset routes and make sure everything renders cleanly with no layout shifts. Keep the core functional modules untouched since their APIs are already fully operational.
