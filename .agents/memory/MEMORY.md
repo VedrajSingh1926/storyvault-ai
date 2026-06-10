@@ -1,0 +1,2 @@
+- [Gemini schema coercion](gemini-schema-coercion.md) — Gemini 2.5-flash returns array fields as plain strings; use z.preprocess(coerceToStringArray) not .catch()
+- [Gemini retry keywords](gemini-retry-keywords.md) — "high demand" / "overloaded" are capacity errors that must be in shouldRetryRequest
