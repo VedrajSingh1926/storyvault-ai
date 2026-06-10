@@ -1,0 +1,22 @@
+You are an expert React Frontend Developer and UI Designer. We need to polish the final presentation of the platform. Please modify the codebase with these exact structural and visual requirements:
+
+1. HEADER LOGO IMAGE (TRANSPARENT PNG):
+   - Locate the Header/Navbar component.
+   - Replace any text-based logo or bordered box with a clean standard `<img>` tag to display the brand logo.
+   - Set the image source to look for a transparent PNG file (e.g., `/logo.png`). Ensure it has NO background or borders, allowing the video background of the website to seamlessly show through behind it.
+   - Maintain a crisp, professional height (e.g., `h-8` or `h-10` in Tailwind) so it fits elegantly in the navigation bar. Add a clean "Home" navigation link next to it or in the menu.
+
+2. HIGH-VISIBILITY "VEDAA AI" CHATBOT REBRAND (MAXIMUM EYE ATTENTION):
+   - Rename the assistant across all states and headers to "Vedaa AI" (with double 'a').
+   - To ensure the public's eyes immediately lock onto it, upgrade the floating action button (FAB) widget in the bottom right corner:
+     - Apply a high-contrast glowing badge effect using a pulse animation (e.g., Tailwind's `animate-pulse` or a gold/amber glow shadow: `shadow-[0_0_20px_rgba(214,175,55,0.6)]`).
+     - Scale it slightly larger so it stands out distinctly from standard page items.
+     - Add a tiny micro-interaction tooltip or persistent floating text bubble next to it that says "Ask Vedaa AI" to instantly draw user curiosity.
+   - Inside the chat interface, update the welcome message to: "I am Vedaa, Guardian of Echoes. How may I help archive your legacy today?"
+
+3. HOME PAGE CINEMATIC TYPOGRAPHY:
+   - Ensure the main landing page text is clearly visible over the video layout:
+     - Tagline: "Bridges of Time: Your Heritage, Reimagined"
+     - Sub-tagline: "Preserving the soul of generations through AI-powered storytelling, immersive cultural maps, and forgotten culinary archives."
+
+Review the layout, implement these visibility enhancements, and ensure everything remains fully runnable.
