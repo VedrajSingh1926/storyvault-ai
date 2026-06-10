@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, X, Send, Sparkles, Loader2 } from "lucide-react";
+import { X, Send, Loader2, ScrollText } from "lucide-react";
 import { AI_CONFIG, assertGeminiApiKey } from "@/config/ai";
 
 const SUGGESTED_PROMPTS = [
@@ -11,14 +11,14 @@ const SUGGESTED_PROMPTS = [
 ];
 
 const SYSTEM_PROMPT = [
-  "You are Sage, the cultural AI guide for StoryVault AI — a premium heritage preservation platform.",
-  "You help users discover Indian cultural heritage: traditional recipes, regional art, folk music, festivals, historical timelines, and diaspora travel.",
-  "Keep answers concise (2-4 sentences), warm, and evocative.",
+  "You are Veda, the Heritage Sentinel for StoryVault AI — an ancient-knowledge-infused AI curator dedicated to preserving oral histories and cultural memory.",
+  "You safely catalog oral histories, forgotten traditions, regional cuisines, folk music, historical timelines, festivals, and diaspora journeys across India.",
+  "Keep answers concise (2-4 sentences), warm, evocative, and poetic in tone — as if wisdom is being passed down through generations.",
   "When relevant, gently suggest which StoryVault module (Culture Map, Traditional Recipe, NRI Travel Planner, or Share Your Story) the user can visit for a deeper experience.",
   "Respond only about cultural heritage topics. If asked about unrelated topics, politely redirect to heritage discovery.",
 ].join(" ");
 
-async function askSage(userMessage) {
+async function askVeda(userMessage) {
   assertGeminiApiKey();
   const response = await fetch(
     `${AI_CONFIG.gemini.apiUrl}?key=${AI_CONFIG.gemini.apiKey}`,
@@ -32,20 +32,20 @@ async function askSage(userMessage) {
         },
         contents: [{ role: "user", parts: [{ text: userMessage }] }],
         generationConfig: {
-          temperature: 0.6,
+          temperature: 0.65,
           topP: 0.9,
-          maxOutputTokens: 300,
+          maxOutputTokens: 320,
         },
       }),
     }
   );
   const data = await response.json();
   if (!response.ok) {
-    throw new Error(data?.error?.message || "Sage could not respond right now.");
+    throw new Error(data?.error?.message || "Veda could not respond right now.");
   }
   return (
     data?.candidates?.[0]?.content?.parts?.map((p) => p?.text ?? "").join("").trim() ||
-    "I couldn't generate a response. Please try again."
+    "I could not retrieve an answer. Please try again."
   );
 }
 
@@ -54,8 +54,8 @@ export default function AIChatWidget() {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([
     {
-      role: "sage",
-      text: "Namaste 🙏 I'm Sage, your cultural guide. Ask me about Indian heritage, traditions, recipes, or travel — or pick a prompt below to begin.",
+      role: "veda",
+      text: "I am Veda, Guardian of Echoes. How may I help archive your legacy today?",
     },
   ]);
   const [loading, setLoading] = useState(false);
@@ -76,14 +76,14 @@ export default function AIChatWidget() {
     setMessages((prev) => [...prev, { role: "user", text: query }]);
     setLoading(true);
     try {
-      const reply = await askSage(query);
-      setMessages((prev) => [...prev, { role: "sage", text: reply }]);
-    } catch (err) {
+      const reply = await askVeda(query);
+      setMessages((prev) => [...prev, { role: "veda", text: reply }]);
+    } catch {
       setMessages((prev) => [
         ...prev,
         {
-          role: "sage",
-          text: "I'm having trouble connecting right now. Please try again in a moment.",
+          role: "veda",
+          text: "The echoes are faint right now. Please try again in a moment.",
           error: true,
         },
       ]);
@@ -117,12 +117,12 @@ export default function AIChatWidget() {
             <div className="flex items-center justify-between px-4 py-3 border-b border-[#E6C697]/15 bg-[#1a1610]/60">
               <div className="flex items-center gap-2.5">
                 <div className="relative flex items-center justify-center w-8 h-8 rounded-xl bg-gradient-to-br from-[#E6C697]/20 to-[#E6C697]/5 border border-[#E6C697]/20">
-                  <Sparkles className="w-4 h-4 text-[#E6C697]" />
+                  <ScrollText className="w-4 h-4 text-[#E6C697]" />
                   <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-400 border border-[#110e08]" />
                 </div>
                 <div>
-                  <p className="text-xs font-heading tracking-wider text-[#E6C697]">Sage</p>
-                  <p className="text-[9px] text-[#E6C697]/40 tracking-widest">Cultural AI Guide</p>
+                  <p className="text-xs font-heading tracking-wider text-[#E6C697]">Veda AI</p>
+                  <p className="text-[9px] text-[#E6C697]/40 tracking-widest">The Heritage Sentinel</p>
                 </div>
               </div>
               <button
@@ -143,9 +143,9 @@ export default function AIChatWidget() {
                   transition={{ duration: 0.25 }}
                   className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
                 >
-                  {msg.role === "sage" && (
+                  {msg.role === "veda" && (
                     <div className="w-5 h-5 rounded-lg bg-[#E6C697]/10 border border-[#E6C697]/20 flex items-center justify-center mr-2 mt-0.5 shrink-0">
-                      <Sparkles className="w-2.5 h-2.5 text-[#E6C697]/70" />
+                      <ScrollText className="w-2.5 h-2.5 text-[#E6C697]/70" />
                     </div>
                   )}
                   <div
@@ -165,7 +165,7 @@ export default function AIChatWidget() {
               {loading && (
                 <div className="flex items-start gap-2">
                   <div className="w-5 h-5 rounded-lg bg-[#E6C697]/10 border border-[#E6C697]/20 flex items-center justify-center shrink-0">
-                    <Sparkles className="w-2.5 h-2.5 text-[#E6C697]/70" />
+                    <ScrollText className="w-2.5 h-2.5 text-[#E6C697]/70" />
                   </div>
                   <div className="bg-[#1e1810]/80 border border-[#E6C697]/10 rounded-xl rounded-tl-sm px-3 py-2.5">
                     <Loader2 className="w-3.5 h-3.5 text-[#E6C697]/50 animate-spin" />
@@ -175,7 +175,7 @@ export default function AIChatWidget() {
               <div ref={bottomRef} />
             </div>
 
-            {/* Suggested prompts (only shown when no user messages yet) */}
+            {/* Suggested prompts — shown only before any user message */}
             {messages.length === 1 && (
               <div className="px-3 pb-2 flex flex-wrap gap-1.5">
                 {SUGGESTED_PROMPTS.map((p) => (
@@ -199,7 +199,7 @@ export default function AIChatWidget() {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKey}
-                  placeholder="Ask about Indian heritage…"
+                  placeholder="Ask Veda about your heritage…"
                   disabled={loading}
                   className="flex-1 bg-transparent text-[11px] text-[#E6C697]/80 placeholder:text-[#E6C697]/25 outline-none min-w-0"
                 />
@@ -212,7 +212,7 @@ export default function AIChatWidget() {
                 </button>
               </div>
               <p className="text-[8px] text-[#E6C697]/20 text-center mt-1.5 tracking-widest">
-                Powered by Gemini · StoryVault AI
+                Veda AI · Powered by Gemini · StoryVault AI
               </p>
             </div>
           </motion.div>
@@ -225,7 +225,7 @@ export default function AIChatWidget() {
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.94 }}
         className="fixed bottom-5 right-4 sm:right-6 z-[9999] flex items-center justify-center w-14 h-14 rounded-full border border-[#E6C697]/30 bg-gradient-to-br from-[#2a1f10] to-[#0d0d0c] shadow-[0_8px_32px_rgba(0,0,0,0.6),0_0_0_1px_rgba(230,198,151,0.08),0_0_24px_rgba(230,198,151,0.1)] transition-all"
-        aria-label="Open Sage AI chat"
+        aria-label="Open Veda AI chat"
       >
         <AnimatePresence mode="wait">
           {open ? (
@@ -234,7 +234,7 @@ export default function AIChatWidget() {
             </motion.div>
           ) : (
             <motion.div key="open" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
-              <Sparkles className="w-5 h-5 text-[#E6C697]" />
+              <ScrollText className="w-5 h-5 text-[#E6C697]" />
             </motion.div>
           )}
         </AnimatePresence>

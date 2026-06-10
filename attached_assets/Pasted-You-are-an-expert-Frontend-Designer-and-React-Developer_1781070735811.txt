@@ -1,0 +1,22 @@
+You are an expert Frontend Designer and React Developer. We are executing a cinematic rebranding for the "StoryVault AI" platform. Please read all relevant components and apply the following codebase updates in one go:
+
+1. HOME PAGE TYPOGRAPHY & TEXT OVERHAUL:
+   - Locate the main landing/home page file (e.g., Home.jsx).
+   - Change the hero section headings to use a premium, clean layout with the following text:
+     - Main Tagline (h1): "Bridges of Time: Your Heritage, Reimagined"
+     - Sub-tagline (p): "Preserving the soul of generations through AI-powered storytelling, immersive cultural maps, and forgotten culinary archives."
+   - Apply proper styling overlay parameters (e.g., text-shadow or a smooth 'backdrop-filter: blur(4px)') so this text remains fully legible and highly readable over the background video layer.
+
+2. NAV BAR LOGO UNBOXING:
+   - Open the Navigation/Header component. Find where the 'StoryVault AI' text/logo is wrapped.
+   - Completely REMOVE any border, boxing, background container, or outline surrounding the logo. It must be clean, seamless typography that sits natively on top of the transparent video overlay header.
+   - Ensure a dedicated "Home" navigation link or visible icon is added to the menu bar.
+
+3. REBRAND THE CHATBOT TO 'VEDA AI' (THE CORE USP):
+   - Locate the floating chat assistant module/component.
+   - Rename the helper from generic terms to: "Veda AI: The Heritage Sentinel".
+   - Pitch this agent clearly as the platform's unique USP—an ancient-knowledge-infused curator that safely catalogs oral histories.
+   - Update the UI chat icon: replace the generic spark/gemini badge with an artifact, scroll, or elegant clean minimalist spark icon (like Lucide's 'Sparkles' or FontAwesome 'fa-history').
+   - Update its internal welcome placeholder message to: "I am Veda, Guardian of Echoes. How may I help archive your legacy today?"
+
+Scan the files, refactor the code responsibly without disturbing the underlying API calls, and build a beautiful, premium environment.

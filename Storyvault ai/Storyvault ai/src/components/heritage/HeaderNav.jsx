@@ -47,12 +47,12 @@ export default function HeaderNav({ activeTab, setActiveTab, onMissionOpen }) {
               type="button"
               onClick={() => setActiveTab("home")}
               aria-label="Go to StoryVault AI home"
-              className="logo-spin-dual flex h-11 w-11 items-center justify-center rounded-2xl border border-[#E6C697]/25 bg-gradient-to-br from-[#201810] to-[#0d0d0c] shadow-[0_0_18px_rgba(230,198,151,0.14)] overflow-hidden p-0.5"
+              className="logo-spin-dual flex h-11 w-11 items-center justify-center overflow-hidden"
             >
               <img
                 src="/sv-logo.png"
                 alt="SV"
-                className="w-full h-full object-contain"
+                className="w-full h-full object-contain drop-shadow-[0_0_12px_rgba(230,198,151,0.4)]"
                 onError={(e) => {
                   e.currentTarget.style.display = "none";
                   e.currentTarget.nextSibling.style.display = "flex";

@@ -70,14 +70,14 @@ export default function HomeLanding({ onNavigate }) {
             <img
               src="/sv-logo.png"
               alt="StoryVault AI"
-              className="w-20 h-20 sm:w-24 sm:h-24 object-contain drop-shadow-[0_0_24px_rgba(230,198,151,0.35)]"
+              className="w-20 h-20 sm:w-24 sm:h-24 object-contain drop-shadow-[0_0_32px_rgba(230,198,151,0.45)]"
             />
           </motion.div>
 
           {/* Eyebrow */}
           <motion.p
             variants={fadeUp}
-            className="text-[9px] sm:text-[10px] tracking-[0.35em] uppercase text-[#E6C697]/50 font-heading"
+            className="text-[9px] sm:text-[10px] tracking-[0.35em] uppercase text-[#E6C697]/55 font-heading"
           >
             Multi-generational Preservation
           </motion.p>
@@ -85,9 +85,14 @@ export default function HomeLanding({ onNavigate }) {
           {/* Main headline */}
           <motion.h1
             variants={fadeUp}
-            className="font-heading text-5xl sm:text-7xl md:text-8xl text-[#E6C697] tracking-[0.12em] leading-none drop-shadow-[0_4px_24px_rgba(0,0,0,0.8)]"
+            className="font-heading text-4xl sm:text-6xl md:text-7xl text-[#E6C697] tracking-[0.08em] leading-[1.1] drop-shadow-[0_4px_32px_rgba(0,0,0,0.9)]"
+            style={{ textShadow: "0 2px 40px rgba(0,0,0,0.8), 0 0 80px rgba(0,0,0,0.5)" }}
           >
-            StoryVault <span className="text-[#E6C697]/80">AI</span>
+            Bridges of Time:
+            <br />
+            <span className="text-[#E6C697]/75 text-3xl sm:text-5xl md:text-6xl tracking-[0.12em]">
+              Your Heritage, Reimagined
+            </span>
           </motion.h1>
 
           {/* Divider */}
@@ -99,11 +104,12 @@ export default function HomeLanding({ onNavigate }) {
           {/* Subtitle */}
           <motion.p
             variants={fadeUp}
-            className="text-sm sm:text-base md:text-lg text-[#E6C697]/60 font-display italic max-w-xl leading-relaxed tracking-wide"
+            className="text-sm sm:text-base md:text-lg text-[#E6C697]/65 font-display italic max-w-2xl leading-relaxed tracking-wide"
+            style={{ textShadow: "0 1px 20px rgba(0,0,0,0.9)" }}
           >
-            Transmission of heritage.&nbsp; Preservation of endangered cultural memory.
+            Preserving the soul of generations through AI-powered storytelling,
             <br className="hidden sm:block" />
-            Reimagined through AI-assisted storytelling, food, and diaspora journeys.
+            immersive cultural maps, and forgotten culinary archives.
           </motion.p>
 
           {/* CTA */}
