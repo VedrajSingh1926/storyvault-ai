@@ -47,6 +47,10 @@ const fadeUp = {
 export default function HomeLanding({ onNavigate }) {
   const [hoveredCard, setHoveredCard] = useState(null);
 
+  function scrollToGallery() {
+    document.getElementById("module-gallery")?.scrollIntoView({ behavior: "smooth" });
+  }
+
   return (
     <div className="min-h-screen flex flex-col">
       {/* ── Cinematic Hero ─────────────────────────────────────────────── */}
@@ -113,13 +117,15 @@ export default function HomeLanding({ onNavigate }) {
           </motion.p>
 
           {/* CTA */}
-          <motion.div
+          <motion.button
             variants={fadeUp}
-            className="mt-2 inline-flex items-center gap-2.5 px-6 py-3 rounded-full border border-[#E6C697]/25 bg-[#E6C697]/8 backdrop-blur-sm text-[#E6C697]/80 text-xs tracking-widest font-heading uppercase cursor-default"
+            type="button"
+            onClick={scrollToGallery}
+            className="mt-2 inline-flex items-center gap-2.5 px-6 py-3 rounded-full border border-[#E6C697]/25 bg-[#E6C697]/8 backdrop-blur-sm text-[#E6C697]/80 text-xs tracking-widest font-heading uppercase transition-all duration-300 hover:bg-[#E6C697]/15 hover:border-[#E6C697]/45 hover:text-[#E6C697] active:scale-95 cursor-pointer"
           >
             <span>Select a gallery below</span>
             <ArrowRight className="w-3.5 h-3.5 animate-pulse" />
-          </motion.div>
+          </motion.button>
         </motion.div>
 
         {/* Bottom fade into cards section */}
@@ -127,7 +133,7 @@ export default function HomeLanding({ onNavigate }) {
       </section>
 
       {/* ── Module Cards ───────────────────────────────────────────────── */}
-      <section className="relative z-10 bg-[#0d0d0c] px-4 pb-16 pt-2">
+      <section id="module-gallery" className="relative z-10 bg-[#0d0d0c] px-4 pb-16 pt-2">
         <motion.div
           variants={stagger}
           initial="hidden"

@@ -45,10 +45,16 @@ const LOCATION_OPTIONS = [
 const TIMELINE_ORDER = ["origin", "historical", "modern", "today", "future2035"];
 const TIMELINE_LABELS = {
   origin: "Origin",
-  historical: "Historical",
-  modern: "Modern",
-  today: "Today",
-  future2035: "2035"
+  historical: "Modern Evolution",
+  modern: "Millennial Era",
+  today: "Present Day",
+  future2035: "Future Vision",
+};
+const TIMELINE_YEAR_OVERRIDES = {
+  historical: "1980s",
+  modern: "2000s",
+  today: "Present Day",
+  future2035: "2035 — Innovation & Fusion",
 };
 
 export default function TimelineTab({ onStepChange }) {
@@ -434,6 +440,7 @@ export default function TimelineTab({ onStepChange }) {
                       {TIMELINE_ORDER.map((stageKey) => {
                         const stageData = cultureMap[stageKey];
                         if (!stageData) return null;
+                        const displayYear = TIMELINE_YEAR_OVERRIDES[stageKey] ?? stageData.year;
 
                         return (
                           <div key={stageKey} className="flex flex-col items-center flex-1">
@@ -449,7 +456,7 @@ export default function TimelineTab({ onStepChange }) {
                                 <div className="w-2 h-2 rounded-full bg-[#15120f]"></div>
                               </div>
                               <div className="bg-[#0d0d0c] border border-[#E6C697]/20 rounded-xl px-4 py-3 text-center transition-all group-hover:border-[#E6C697]/50 group-hover:bg-[#E6C697]/10 shadow-lg min-w-[120px]">
-                                <p className="text-xs font-bold text-[#E6C697] mb-1">{stageData.year}</p>
+                                <p className="text-xs font-bold text-[#E6C697] mb-1">{displayYear}</p>
                                 <p className="text-[10px] text-[#E6C697]/70 line-clamp-2 leading-tight">{stageData.title}</p>
                               </div>
                             </button>
