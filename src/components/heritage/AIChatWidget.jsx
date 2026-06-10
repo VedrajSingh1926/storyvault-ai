@@ -1,7 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Send, Loader2, ScrollText } from "lucide-react";
-import { AI_CONFIG, assertGeminiApiKey } from "@/config/ai";
+
+// Vedaa AI uses its own dedicated key (VITE_GEMINI_CHAT_KEY) separate from
+// the main Gemini key used by recipes / culture maps / travel plans, so rate
+// limits on one module never block the other.
+const CHAT_API_KEY = import.meta.env.VITE_GEMINI_CHAT_KEY;
+const GEMINI_API_URL =
+  "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
 
 const SUGGESTED_PROMPTS = [
   "Suggest a forgotten Indian recipe to explore",
@@ -19,26 +25,27 @@ const SYSTEM_PROMPT = [
 ].join(" ");
 
 async function askVedaa(userMessage) {
-  assertGeminiApiKey();
-  const response = await fetch(
-    `${AI_CONFIG.gemini.apiUrl}?key=${AI_CONFIG.gemini.apiKey}`,
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        systemInstruction: {
-          role: "system",
-          parts: [{ text: SYSTEM_PROMPT }],
-        },
-        contents: [{ role: "user", parts: [{ text: userMessage }] }],
-        generationConfig: {
-          temperature: 0.65,
-          topP: 0.9,
-          maxOutputTokens: 320,
-        },
-      }),
-    }
-  );
+  if (!CHAT_API_KEY) {
+    throw new Error(
+      "VITE_GEMINI_CHAT_KEY is not configured. Add it to the Replit Secrets panel and restart the app."
+    );
+  }
+  const response = await fetch(`${GEMINI_API_URL}?key=${CHAT_API_KEY}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      systemInstruction: {
+        role: "system",
+        parts: [{ text: SYSTEM_PROMPT }],
+      },
+      contents: [{ role: "user", parts: [{ text: userMessage }] }],
+      generationConfig: {
+        temperature: 0.65,
+        topP: 0.9,
+        maxOutputTokens: 320,
+      },
+    }),
+  });
   const data = await response.json();
   if (!response.ok) {
     throw new Error(data?.error?.message || "Vedaa could not respond right now.");
@@ -79,12 +86,14 @@ export default function AIChatWidget() {
     try {
       const reply = await askVedaa(query);
       setMessages((prev) => [...prev, { role: "vedaa", text: reply }]);
-    } catch {
+    } catch (err) {
       setMessages((prev) => [
         ...prev,
         {
           role: "vedaa",
-          text: "The echoes are faint right now. Please try again in a moment.",
+          text: err?.message?.includes("VITE_GEMINI_CHAT_KEY")
+            ? err.message
+            : "The echoes are faint right now. Please try again in a moment.",
           error: true,
         },
       ]);
@@ -176,7 +185,7 @@ export default function AIChatWidget() {
               <div ref={bottomRef} />
             </div>
 
-            {/* Suggested prompts — shown only before any user message */}
+            {/* Suggested prompts */}
             {messages.length === 1 && (
               <div className="px-3 pb-2 flex flex-wrap gap-1.5">
                 {SUGGESTED_PROMPTS.map((p) => (
@@ -222,10 +231,8 @@ export default function AIChatWidget() {
 
       {/* ── FAB + Tooltip ──────────────────────────────────────────────── */}
       <div className="fixed bottom-5 right-4 sm:right-6 z-[9999] flex items-center gap-3">
-
-        {/* "Ask Vedaa AI" persistent label — slides in from right */}
         <AnimatePresence>
-          {(!open && fabHovered) && (
+          {!open && fabHovered && (
             <motion.div
               initial={{ opacity: 0, x: 12, scale: 0.92 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
@@ -242,7 +249,6 @@ export default function AIChatWidget() {
           )}
         </AnimatePresence>
 
-        {/* Persistent "Ask Vedaa AI" micro-badge shown when not hovered and chat is closed */}
         {!open && !fabHovered && (
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -258,7 +264,6 @@ export default function AIChatWidget() {
           </motion.div>
         )}
 
-        {/* FAB button */}
         <motion.button
           onClick={() => setOpen((o) => !o)}
           onMouseEnter={() => setFabHovered(true)}
@@ -267,43 +272,29 @@ export default function AIChatWidget() {
           whileTap={{ scale: 0.92 }}
           className="relative flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#2a1f10] to-[#0d0d0c] border border-[#D6AF37]/40 transition-all duration-300"
           style={{
-            boxShadow: fabHovered || open
-              ? "0 0 0 0 transparent, 0 8px 32px rgba(0,0,0,0.6), 0 0 28px rgba(214,175,55,0.65), 0 0 56px rgba(214,175,55,0.3)"
-              : "0 8px 32px rgba(0,0,0,0.5), 0 0 20px rgba(214,175,55,0.4), 0 0 40px rgba(214,175,55,0.2)",
+            boxShadow:
+              fabHovered || open
+                ? "0 8px 32px rgba(0,0,0,0.6), 0 0 28px rgba(214,175,55,0.65), 0 0 56px rgba(214,175,55,0.3)"
+                : "0 8px 32px rgba(0,0,0,0.5), 0 0 20px rgba(214,175,55,0.4), 0 0 40px rgba(214,175,55,0.2)",
           }}
           aria-label="Open Vedaa AI chat"
         >
-          {/* Outer pulse ring */}
           {!open && (
             <span className="absolute inset-0 rounded-full border border-[#D6AF37]/30 animate-ping opacity-60" />
           )}
 
-          {/* Icon */}
           <AnimatePresence mode="wait">
             {open ? (
-              <motion.div
-                key="close"
-                initial={{ rotate: -90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: 90, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
+              <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
                 <X className="w-6 h-6 text-[#E6C697]" />
               </motion.div>
             ) : (
-              <motion.div
-                key="scroll"
-                initial={{ rotate: 90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: -90, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
+              <motion.div key="scroll" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
                 <ScrollText className="w-6 h-6 text-[#E6C697]" />
               </motion.div>
             )}
           </AnimatePresence>
 
-          {/* Online dot */}
           {!open && (
             <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-emerald-400 border-2 border-[#0d0d0c] animate-pulse" />
           )}
