@@ -1,0 +1,38 @@
+ct as a Senior QA Automation & Full-Stack Engineer. I am preparing this project for a critical Hackathon submission tonight. Along with the specific UI/UX updates, I need you to perform a thorough codebase audit, self-test, and fix any hidden bugs.
+
+1. Comprehensive Bug-Fix & Console Cleanup
+Scan the codebase for any missing assets, broken paths, or configuration mismatches.
+
+Fix the manifest.json / storyvault-icon.svg loading status errors (like the 401/404 issues appearing in the console) by ensuring public assets are correctly placed in the root public directory and linked properly in index.html.
+
+Check all data fetching and mapping methods across cultural-kb.js and travel-kb.js to ensure zero runtime breaks when users input unexpected text queries.
+
+2. Home Page Hero Button Fix
+Check the Hero/Landing section component. Ensure the main Call-to-Action (CTA) button (e.g., 'SELECT A GALLERY BELOW') is fully interactive, bound correctly to its onClick event handler, and smoothly scrolls or routes to the content/gallery area below.
+
+3. Absolute Device Responsiveness (Width Fix)
+Review all components (HomeLanding.jsx, AIChatWidget.jsx, RecipeTab.jsx, TravelTab.jsx, TimelineTab.jsx).
+
+Ensure the overall viewport layout behaves perfectly across mobile devices, tablets, and desktops using flexible Tailwind configurations (max-w-full, w-full, and responsive flex directions) so nothing overflows horizontally.
+
+4. Cultural Timeline Dynamic Milestones (TimelineTab.jsx)
+Standardise the timeline nodes to map these exact chronological eras dynamically based on the searched topic:
+
+Node 1 (History/Origin): Dynamic historical era/century when the topic originally emerged (e.g., '11th-12th Century').
+
+Node 2 (Modern Evolution): 1980s (Rise of commercialization/regional spread).
+
+Node 3 (Millennial Era): 2000s (Global adaptation).
+
+Node 4 (Present Day): Modern current-day state ('Present Day').
+
+Node 5 (Future Vision): Future trajectory ('2035 - Innovation & Fusion').
+
+5. Travel Planner Premium UI/UX Redesign (TravelTab.jsx)
+Completely redesign the Travel Planner output container using a modern, visually stunning Museum/Heritage theme matching the site's dark-gold luxury aesthetic.
+
+Wrap the data in padded cards with glassmorphism effects (bg-neutral-900/60 backdrop-blur-md border border-amber-900/40).
+
+Add distinct styled headers for sections like 'Day-by-Day Itinerary', 'Cultural Highlights', and 'Local Delicacies'. Use bold amber text (text-amber-400) for emphasis on historical spots instead of dense plain text blocks.
+
+Please process all files carefully, eliminate all console warnings, and compile a perfectly optimized, bug-free production build ready for flawless deployment

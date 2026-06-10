@@ -1,0 +1,35 @@
+Act as a Senior Frontend Engineer and UI/UX Designer. Refine my 'StoryVault AI' project with the following specific enhancements, fixing layout issues, responsiveness, and updating core features in one go:
+
+1. Hero Section Button Fix (Home Page)
+Check the Hero/Landing section component. Ensure the main Call-to-Action (CTA) button (e.g., 'SELECT A GALLERY BELOW' or 'EXPLORE') is fully interactive, bound correctly to its onClick event handler, and smoothly scrolls or routes to the gallery/content area.
+
+2. Absolute Device Responsiveness (Width Fix)
+Review all components (HomeLanding.jsx, AIChatWidget.jsx, RecipeTab.jsx, TravelTab.jsx, TimelineTab.jsx).
+
+Ensure the overall viewport layout behaves perfectly across mobile devices, tablets, and desktops using flexible Tailwind/CSS configurations (max-w-full, w-full, responsive padding/margins, and flex-col md:flex-row where required) so nothing overflows horizontally.
+
+3. Cultural Timeline Dynamic Milestones (TimelineTab.jsx)
+In the Culture Map timeline component, standardise the timeline nodes to map these exact chronological eras dynamically based on the searched topic:
+
+Node 1 (History/Origin): Dynamic historical era/century when the topic originally emerged (e.g., '11th-12th Century' or 'Ancient Roots').
+
+Node 2 (Modern Evolution): 1980s (Rise of commercialization/regional spread).
+
+Node 3 (Millennial Era): 2000s (Global adaptation and modernization).
+
+Node 4 (Present Day): Modern current-day state ('Present Day').
+
+Node 5 (Future Vision): Future trajectory ('2035 - Innovation & Fusion').
+
+4. Travel Planner Premium UI/UX Redesign (TravelTab.jsx)
+The generated travel plan text output looks boring. Completely redesign the Travel Planner output container using a modern, visually stunning Museum/Heritage theme matching the rest of the site (dark-gold luxury aesthetic).
+
+Visual Structure for Travel Output:
+
+Wrap the data in clear, padded cards with glassmorphism effects (bg-neutral-900/60 backdrop-blur-md border border-amber-900/40).
+
+Add distinct styled headers for sections like 'Day-by-Day Itinerary', 'Cultural Highlights', and 'Local Delicacies'.
+
+Use structured lists, subtle elegant bullet points, or dynamic custom steps instead of dense blocks of plain text. Use bold amber text (text-amber-400) for emphasis on historical spots and places.
+
+Please process all files carefully and rewrite the components to execute this clean, fully responsive, high-end design implementation

@@ -1,0 +1,36 @@
+"Act as a Senior Frontend Architect. I need to optimize this codebase for a critical production release. Do NOT leave any automated comments, AI-generation tags, or placeholders anywhere in the files. The final code must look 100% clean, hand-written, and professionally structured for a high-end engineering review.
+
+1. Clean Architecture & Console Cleanup
+Scan the codebase for any runtime warnings or errors. Fix the manifest.json and storyvault-icon.svg asset path resolution so that everything loads correctly from the public directory without console noise.
+
+Ensure all modules utilize standard React design principles and industry-standard clean coding practices (remove dead code, console.logs, or temporary comments).
+
+2. Home Page Landing Interaction Fix
+Audit the main CTA button ('SELECT A GALLERY BELOW') in the Hero section. Ensure it has a production-ready click-handler with a smooth-scroll behavior targeting the main gallery component section seamlessly.
+
+3. Fluid Device Responsiveness (Multi-Device Layout)
+Refactor layouts across HomeLanding.jsx, AIChatWidget.jsx, RecipeTab.jsx, TravelTab.jsx, and TimelineTab.jsx.
+
+Implement robust responsive structures using Tailwind utility classes (w-full, max-w-7xl, proper grid layouts, and responsive flex alignments) to ensure an absolute zero-overflow horizontal viewport across mobile, tablet, and ultra-wide screens.
+
+4. Chronological Cultural Timeline Mapping (TimelineTab.jsx)
+Refactor the timeline data parsing to display a highly structured 5-node chronological layout dynamically adjusted per search query:
+
+Node 1 (Origin): Dynamic historical era or century of origin (e.g., '11th-12th Century').
+
+Node 2 (Modern Evolution): Standardized to 1980s.
+
+Node 3 (Millennial Adaptation): Standardized to 2000s.
+
+Node 4 (Present Status): Labeled as 'Present Day'.
+
+Node 5 (Future Vision): Projected trajectory mapped to '2035 - Innovation & Fusion'.
+
+5. Immersive Travel Planner UI/UX Overhaul (TravelTab.jsx)
+Upgrade the Travel Planner output container into a premium, luxury heritage-themed display that mirrors a digital museum experience.
+
+Avoid plain text walls. Leverage glassmorphic aesthetic cards (bg-neutral-900/60 backdrop-blur-md border border-amber-900/40) with polished typography.
+
+Group content into defined subsections like 'Day-by-Day Itinerary', 'Cultural Highlights', and 'Local Delicacies' using elegant custom bullet matrices and clean layout wrappers with high-contrast amber accents (text-amber-400).
+
+Execute these enhancements seamlessly while maintaining a pristine, enterprise-grade codebase repository."

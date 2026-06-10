@@ -5,7 +5,7 @@ const GEMINI_MAX_RETRIES = 3;
 const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || "";
 
 const IMAGE_ENDPOINT =
-  "https://coresg-normal.trae.ai/api/ide/v1/text_to_image";
+  "https://source.unsplash.com/featured/?";
 
 export const AI_CONFIG = Object.freeze({
   gemini: {
@@ -33,7 +33,7 @@ export function assertGeminiApiKey() {
 
 export function buildMuseumImageUrl(prompt, imageSize = AI_CONFIG.images.defaultSize) {
   const encodedPrompt = encodeURIComponent(String(prompt || "").trim());
-  return `${AI_CONFIG.images.endpoint}?prompt=${encodedPrompt}&image_size=${imageSize}`;
+  return `${AI_CONFIG.images.endpoint}${encodedPrompt}`;
 }
 
 export function getGeminiDebugInfo(label, attempt) {
