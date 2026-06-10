@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 30 10% 6%;
+    --foreground: 38 30% 90%;
+    --card: 30 8% 10%;
+    --card-foreground: 38 30% 90%;
+    --popover: 30 8% 10%;
+    --popover-foreground: 38 30% 90%;
+    --primary: 36 60% 72%;
+    --primary-foreground: 30 10% 6%;
+    --secondary: 30 8% 16%;
+    --secondary-foreground: 38 30% 85%;
+    --muted: 30 6% 14%;
+    --muted-foreground: 30 10% 50%;
+    --accent: 187 94% 42%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 36 20% 20%;
+    --input: 36 15% 18%;
+    --ring: 36 60% 72%;
+    --chart-1: 36 60% 72%;
+    --chart-2: 187 94% 42%;
+    --chart-3: 30 40% 50%;
+    --chart-4: 16 70% 55%;
+    --chart-5: 45 80% 60%;
+    --radius: 0.75rem;
+    --font-heading: 'Cinzel', serif;
+    --font-body: 'Inter', sans-serif;
+    --font-display: 'Playfair Display', serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    --sidebar-background: 30 8% 8%;
+    --sidebar-foreground: 38 30% 90%;
+    --sidebar-primary: 36 60% 72%;
+    --sidebar-primary-foreground: 30 10% 6%;
+    --sidebar-accent: 30 8% 14%;
+    --sidebar-accent-foreground: 38 30% 90%;
+    --sidebar-border: 36 20% 20%;
+    --sidebar-ring: 36 60% 72%;
+  }
+
+  .dark {
+    --background: 30 10% 6%;
+    --foreground: 38 30% 90%;
+    --card: 30 8% 10%;
+    --card-foreground: 38 30% 90%;
+    --popover: 30 8% 10%;
+    --popover-foreground: 38 30% 90%;
+    --primary: 36 60% 72%;
+    --primary-foreground: 30 10% 6%;
+    --secondary: 30 8% 16%;
+    --secondary-foreground: 38 30% 85%;
+    --muted: 30 6% 14%;
+    --muted-foreground: 30 10% 50%;
+    --accent: 187 94% 42%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 36 20% 20%;
+    --input: 36 15% 18%;
+    --ring: 36 60% 72%;
+    --chart-1: 36 60% 72%;
+    --chart-2: 187 94% 42%;
+    --chart-3: 30 40% 50%;
+    --chart-4: 16 70% 55%;
+    --chart-5: 45 80% 60%;
+    --sidebar-background: 30 8% 8%;
+    --sidebar-foreground: 38 30% 90%;
+    --sidebar-primary: 36 60% 72%;
+    --sidebar-primary-foreground: 30 10% 6%;
+    --sidebar-accent: 30 8% 14%;
+    --sidebar-accent-foreground: 38 30% 90%;
+    --sidebar-border: 36 20% 20%;
+    --sidebar-ring: 36 60% 72%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-body;
+  }
+}
+
+@keyframes logo-spin-dual {
+  0% { transform: rotate(0deg); }
+  40% { transform: rotate(720deg); }
+  50% { transform: rotate(720deg); }
+  90% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.logo-spin-dual {
+  animation: logo-spin-dual 6s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px rgba(230, 198, 151, 0.3); }
+  50% { box-shadow: 0 0 24px rgba(230, 198, 151, 0.7); }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, transparent, rgba(230,198,151,0.15), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+.parchment-bg {
+  background-image: 
+    radial-gradient(ellipse at 20% 50%, rgba(230,198,151,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 50%, rgba(230,198,151,0.04) 0%, transparent 50%),
+    linear-gradient(180deg, rgba(26,22,18,1) 0%, rgba(20,17,14,1) 100%);
+}
+
+.matrix-grid-bg {
+  background-color: #0d0d0c;
+  background-image: 
+    linear-gradient(to right, #1f1f1e 1px, transparent 1px),
+    linear-gradient(to bottom, #1f1f1e 1px, transparent 1px);
+  background-size: 4rem 4rem;
+}
+
+.glass-panel {
+  background: rgba(26, 22, 18, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

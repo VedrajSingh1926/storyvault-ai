@@ -1,0 +1,17 @@
+{
+  "name": "StoryVault AI",
+  "short_name": "StoryVault",
+  "description": "A cultural museum-style experience for preserving stories, recipes, and heritage journeys.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d0d0c",
+  "theme_color": "#e6c697",
+  "icons": [
+    {
+      "src": "/storyvault-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
